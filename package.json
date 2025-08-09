@@ -1,0 +1,86 @@
+{
+  "name": "codescape",
+  "displayName": "CODESCAPE - Cyberpunk Narrative RPG",
+  "description": "Experience a revolutionary cyberpunk RPG where your story choices secretly generate professional TypeScript modules",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Education",
+    "Machine Learning"
+  ],
+  "activationEvents": [
+    "onCommand:codescape.initializePlayer",
+    "onCommand:codescape.openGamePanel"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codescape.initializePlayer",
+        "title": "CODESCAPE: Initialize Player Profile"
+      },
+      {
+        "command": "codescape.openGamePanel",
+        "title": "CODESCAPE: Open Game Panel"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codescape",
+          "title": "CODESCAPE",
+          "icon": "$(circuit-board)"
+        }
+      ]
+    },
+    "views": {
+      "codescape": [
+        {
+          "id": "codescapeGamePanel",
+          "name": "Cyberpunk Terminal",
+          "type": "webview"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run build && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "create-module": "node ./scripts/create-module.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "typescript": "^5.1.6",
+    "@vscode/test-electron": "^2.3.4",
+    "vsce": "^2.21.0"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/degregar/codescape.git"
+  },
+  "publisher": "codescape",
+  "license": "MIT License with Commons Clause Restriction",
+  "keywords": [
+    "cyberpunk",
+    "rpg",
+    "narrative",
+    "typescript",
+    "community",
+    "modules",
+    "ai"
+  ]
+}
