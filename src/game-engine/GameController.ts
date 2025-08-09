@@ -22,15 +22,14 @@ export class GameController {
     // Update webview to show initialized state
     this.updateWebviewContent({
       type: "playerInitialized",
-      narrative: `
-        🌐 DIGITAL CONSCIOUSNESS ACTIVATED 🌐
-        
-        Your neural pathways synchronize with the network...
-        Reality shifts. You are now connected to CODESCAPE.
-        
-        The terminal awaits your first command.
-        Type "wake up" to begin your digital awakening.
-      `,
+      narrative: `🌐 DIGITAL CONSCIOUSNESS ACTIVATED 🌐
+
+Your neural pathways synchronize with the network...
+Reality shifts. You are now connected to CODESCAPE.
+
+The terminal awaits your first command.
+Type "wake up" to begin your digital awakening.`,
+      actions: ["wake up", "help", "status"],
       showInstructions: true,
     });
 
@@ -85,57 +84,47 @@ export class GameController {
   }
 
   private handleWakeUpCommand(): void {
-    const narrative = `
-        🌐 DIGITAL AWAKENING INITIATED 🌐
+    const narrative = `🌐 DIGITAL AWAKENING INITIATED 🌐
 
-        Your consciousness emerges from the static...
-        
-        You find yourself interfacing with a vast cyberpunk network.
-        Reality bends around streams of flowing data.
-        
-        The system whispers: "Welcome to CODESCAPE, hacker."
-        
-        Type 'scan environment' to analyze your surroundings.
-        `;
+Your consciousness emerges from the static...
+
+You find yourself interfacing with a vast cyberpunk network.
+Reality bends around streams of flowing data.
+
+The system whispers: "Welcome to CODESCAPE, hacker."
+
+Your digital senses come online. The network pulses with infinite possibilities.`;
 
     this.updateWebviewContent({
-      type: "awakening",
+      type: "narrativeResponse",
+      command: "wake up",
       narrative: narrative,
-      availableCommands: ["scan environment", "help", "status"],
+      actions: ["scan environment", "examine data", "help", "status"],
     });
   }
 
   private handleScanEnvironmentCommand(): void {
-    const narrative = `
-        🔍 ENVIRONMENTAL SCAN INITIATED 🔍
+    const narrative = `🔍 ENVIRONMENTAL SCAN INITIATED 🔍
 
-        Your digital sensors sweep through the data streams...
-        
-        ▸ Location: Nexus Terminal Alpha-7
-        ▸ Network Status: ACTIVE
-        ▸ Security Level: LOW
-        ▸ Data Fragments: 3 detected
-        
-        You notice:
-        • A pulsing data node in the distance
-        • Fragments of encrypted code floating nearby  
-        • An abandoned terminal interface
-        
-        Available actions:
-        • Type 'examine data' to investigate the fragments
-        • Type 'access terminal' to interface with the abandoned system
-        • Type 'move forward' to approach the data node
-        `;
+Your digital sensors sweep through the data streams...
+
+▸ Location: Nexus Terminal Alpha-7
+▸ Network Status: ACTIVE
+▸ Security Level: LOW
+▸ Data Fragments: 3 detected
+
+You notice:
+• A pulsing data node in the distance
+• Fragments of encrypted code floating nearby  
+• An abandoned terminal interface
+
+The environment hums with digital energy. Each element seems to contain secrets waiting to be unlocked.`;
 
     this.updateWebviewContent({
-      type: "scanning",
+      type: "narrativeResponse",
+      command: "scan environment",
       narrative: narrative,
-      availableCommands: [
-        "examine data",
-        "access terminal",
-        "move forward",
-        "help",
-      ],
+      actions: ["examine data", "access terminal", "move forward", "help"],
     });
   }
 

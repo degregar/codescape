@@ -1,10 +1,10 @@
 # Active Context: CODESCAPE - VSCode Extension Architecture
 
-## Current Status: CORE EXTENSION FUNCTIONAL
+## Current Status: TERMINAL INTERFACE COMPLETE
 
-**Phase**: Phase 1 Complete - Core Game Interface Working
-**Next Immediate Step**: Implement advanced commands and Cline integration for code generation
-**New Addition**: Complete game command system with fixed popup issues and narrative display
+**Phase**: Phase 1 Complete - Terminal Interface Fully Functional
+**Next Immediate Step**: Phase 2 - Implement Cline AI integration for dynamic narrative generation
+**New Addition**: Complete terminal-style interface with proper command flow and sequential display
 
 ## Revolutionary Architecture Evolution
 
@@ -206,16 +206,27 @@ When user says "Setup and start CODESCAPE game for me", Cline should execute thi
    - Offer first choices that will generate initial TypeScript modules
    - Guide player through their first code generation disguised as "hacking reality"
 
-## Next Session Execution Plan
+## Current Development Focus: Open Narrative System Implementation
 
-1. **Initialize VSCode Extension**: Create package.json, manifest, basic structure
-2. **Setup React Sidebar**: Basic UI framework with cyberpunk theming
-3. **Implement Cline Bridge**: Communication layer between extension and Cline
-4. **Create Security Sandbox**: Command validation and path restrictions
-5. **Build Module Loader**: Dynamic loading system for community content
-6. **Player Profile System**: Initialize command and profile management
-7. **First Command Handler**: Process "wake up" and begin narrative
-8. **Developer Panel**: Optional transparency mode for Cline operations
+**NEW PRIORITY**: Transform CODESCAPE from fixed commands to dynamic AI-driven narrative experience
+
+### Immediate Next Steps (Specification Complete)
+
+1. **UI Architecture Redesign**: Terminal-style layout with fixed input at bottom
+2. **Cline Communication Bridge**: Real AI Game Master integration
+3. **Dynamic Narrative Engine**: Replace hardcoded responses with Cline-generated content
+4. **Context Management System**: Persistent player state and session tracking
+5. **Code Generation Integration**: Real TypeScript module creation from narrative choices
+6. **Action Button System**: Dynamic, context-sensitive command suggestions
+
+### New Specification Document
+
+Complete technical specification created: `.clinerules/memory-bank/specifications/open-narrative-cline-integration.md`
+
+**Key Transformation**:
+
+- FROM: `wake up` → hardcoded response
+- TO: Any player input → Cline AI Game Master → dynamic cyberpunk narrative + optional code generation
 
 ## Player Experience Requirements
 

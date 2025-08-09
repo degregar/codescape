@@ -49,7 +49,7 @@
   "scripts": {
     "build": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "play": "npm run build --watch && echo '🚀 Extension built! Press F5 to launch Extension Development Host'",
+    "play": "npm run watch && echo '🚀 Extension built! Press F5 to launch Extension Development Host'",
     "pretest": "npm run build && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
