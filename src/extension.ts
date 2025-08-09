@@ -64,6 +64,9 @@ class GameWebviewProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
+    // Connect webview to game controller
+    this._gameController?.setWebviewView(webviewView);
+
     // Handle messages from webview
     webviewView.webview.onDidReceiveMessage(
       (message) => {
@@ -204,11 +207,64 @@ class GameWebviewProvider implements vscode.WebviewViewProvider {
             <script>
                 const vscode = acquireVsCodeApi();
                 
+                // Listen for messages from the extension
+                window.addEventListener('message', event => {
+                    const message = event.data;
+                    switch (message.type) {
+                        case 'playerInitialized':
+                            handlePlayerInitialized(message);
+                            break;
+                        case 'awakening':
+                        case 'scanning':
+                        case 'hacking':
+                        case 'exploring':
+                            handleGameUpdate(message);
+                            break;
+                        case 'commandResponse':
+                            handleCommandResponse(message);
+                            break;
+                    }
+                });
+                
                 function initializePlayer() {
                     vscode.postMessage({
                         command: 'initializePlayer'
                     });
                     updateStatus('Initializing player profile...');
+                }
+                
+                function handlePlayerInitialized(message) {
+                    const gameContent = document.getElementById('game-content');
+                    gameContent.innerHTML = '<div class="narrative">' + message.narrative + '</div>' +
+                        '<p style="color: #ffff00; font-weight: bold;">' +
+                        '💡 Type "wake up" in the terminal below to begin your adventure!' +
+                        '</p>';
+                    updateStatus('Player initialized - Ready for commands');
+                    
+                    // Focus on input field
+                    const input = document.getElementById('command-input');
+                    if (input) input.focus();
+                }
+                
+                function handleGameUpdate(message) {
+                    const gameContent = document.getElementById('game-content');
+                    let content = '<div class="narrative">' + message.narrative + '</div>';
+                    
+                    if (message.choices && message.choices.length > 0) {
+                        content += '<div class="choices">';
+                        for (let i = 0; i < message.choices.length; i++) {
+                            const choice = message.choices[i];
+                            content += '<button class="choice-button" onclick="makeChoice(\\''+choice.id+'\\')">'+choice.text+'</button>';
+                        }
+                        content += '</div>';
+                    }
+                    
+                    if (gameContent) gameContent.innerHTML = content;
+                    updateStatus('Adventure in progress...');
+                }
+                
+                function handleCommandResponse(message) {
+                    addToTerminal(message.narrative);
                 }
                 
                 function handleKeyPress(event) {
